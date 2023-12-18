@@ -1,13 +1,35 @@
+
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { configureStore } from '@reduxjs/toolkit';
+import { BrowserRouter } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import ToDoSlice from './componnent/todosreducer';
+import PostSlice from "./componnent/PostReducer"
+import UserSlice from "./componnent/UserRducuers"
+import PhotoSlice from "./componnent/PhotosReducer"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const MyStore = configureStore({
+  reducer: {
+   ToDoSlice,
+   PostSlice,
+   UserSlice,
+   PhotoSlice,
+  }
+})
+
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={MyStore}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
